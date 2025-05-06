@@ -1,115 +1,115 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import React from 'react'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useInView } from 'react-intersection-observer'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
+import HeroSection from '@/components/home/HeroSection'
+import MonumentSection from '@/components/home/MonumentSection'
+import PledgeModal from '@/components/home/PledgeModal'
+import ImageGallery from '@/components/home/ImageGallery'
+import AboutSection from '@/components/home/AboutSection'
+import PrincipleSection from '@/components/home/PrincipleSection'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const totalPledgeGoal = 1200
 
 export default function Home() {
+  const router = useRouter()
+  const [pledgeCount, setPledgeCount] = React.useState(0)
+  const [commentsCount, setCommentsCount] = React.useState(0)
+  const [pledgePercentage, setPledgePercentage] = React.useState(0)
+
+  const { ref: heroRef, inView: heroInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const { ref: modalRef, inView: modalInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const { ref: principlesRef, inView: principlesInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+  React.useEffect(() => {
+    if (router.asPath.includes('#about-section')) {
+      setTimeout(() => {
+        scrollToSection('about-section')
+      }, 100)
+    }
+  }, [router.asPath])
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/pledge')
+        const data = await response.json()
+        setPledgeCount(data.count)
+        setCommentsCount(data.commentsCount)
+        setPledgePercentage((data.count / totalPledgeGoal) * 100)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+    const interval = setInterval(fetchData, 30000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className='min-h-screen bg-gradient-to-b from-[#fffcf7] to-[#fffcf7]'>
+      <Head>
+        <title>Rule of Law Canada | Pledge Your Support</title>
+        <meta
+          name='description'
+          content='Pledge your support for the Rule of Law in Canada'
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+
+      <Navbar onAboutClick={() => scrollToSection('about-section')} />
+
+      <main className='pt-24 mx-auto max-w-6xl px-4'>
+        <HeroSection heroRef={heroRef} heroInView={heroInView} />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <MonumentSection />
+
+      <main className='mx-auto max-w-6xl px-4 pb-20'>
+        <div className='mt-12 relative w-full max-w-5xl mx-auto h-48'>
+          <div className='mt-12 relative z-10 w-full max-w-5xl mx-auto h-20'>
+            <PledgeModal
+              modalRef={modalRef}
+              modalInView={modalInView}
+              pledgePercentage={pledgePercentage}
+              pledgeCount={pledgeCount}
+              commentsCount={commentsCount}
+            />
+          </div>
+          <div className='hidden md:block'>
+            <ImageGallery />
+          </div>
+        </div>
+
+        <AboutSection />
+        <PrincipleSection
+          principlesRef={principlesRef}
+          principlesInView={principlesInView}
+        />
+      </main>
+
+      <Footer />
     </div>
-  );
+  )
 }

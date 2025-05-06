@@ -62,7 +62,7 @@ export default function PledgeForm({
   }
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value, type, checked } = e.target
 
     if (validationErrors[name]) {
       setValidationErrors({
@@ -71,7 +71,16 @@ export default function PledgeForm({
       })
     }
 
-    handleChange(e)
+    if (type === 'checkbox') {
+      handleChange({
+        target: {
+          name,
+          value: checked,
+        },
+      })
+    } else {
+      handleChange(e)
+    }
   }
 
   return (
@@ -191,7 +200,7 @@ export default function PledgeForm({
         </select>
       </div>
 
-      <div className='mb-8 md:mb-20'>
+      <div className='mb-8 md:mb-10'>
         <label
           htmlFor='comment'
           className='block text-sm md:text-base font-bold text-black mb-1'
@@ -206,6 +215,25 @@ export default function PledgeForm({
           rows='6'
           className='w-full p-2 border border-gray-300 rounded resize-none transition-all duration-300 focus:border-[#C1351A] focus:ring-1 focus:ring-[#C1351A] focus:outline-none'
         />
+      </div>
+
+      <div className='my-12 flex items-start'>
+        <div className='flex items-center h-5'>
+          <input
+            id='receiveUpdates'
+            name='receiveUpdates'
+            type='checkbox'
+            checked={formData.receiveUpdates || false}
+            onChange={handleInputChange}
+            className='w-4 h-4 text-[#C1351A] border-gray-300 rounded focus:ring-[#C1351A]'
+          />
+        </div>
+        <label
+          htmlFor='receiveUpdates'
+          className='ml-2 text-sm font-medium text-gray-700 '
+        >
+          Yes, I want to receive updates on the Rule of Law Project, Canada.
+        </label>
       </div>
 
       <button

@@ -24,10 +24,10 @@ export default function MonumentSection() {
         transition={{ duration: 0.8, delay: 0.6 }}
         className='absolute inset-0 flex items-center justify-center px-4'
       >
-        <div className='relative w-full max-w-3xl aspect-[4/3]'>
+        <div className='relative w-full max-w-3xl aspect-[4/3] -translate-y-8 '>
           <Image
-            src='/images/Rule-of-Law-Monument.png'
-            alt='Rule of Law Monument'
+            src='/images/supremeCourtImage1.png'
+            alt='SupremeCourt'
             layout='fill'
             objectFit='contain'
           />

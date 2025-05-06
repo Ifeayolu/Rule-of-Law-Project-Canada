@@ -105,14 +105,14 @@ export default function Pledge() {
 
       <Navbar />
 
-      <main className='bg-[#fffcf7] pt-24'>
+      <main className='bg-[#fffcf7] pt-20'>
         <div className='relative text-white py-8 md:py-16 px-4 md:px-12'>
           <Image
             src='/images/pledgeRectangle.png'
             alt='Pledge Rectangle'
             width={100}
             height={100}
-            className='absolute inset-0 w-full h-[600px] md:h-[895px] object-cover'
+            className='absolute inset-0 w-full h-[600px] md:h-[1130px] object-cover'
             priority
             sizes='100vw'
           />
@@ -123,9 +123,9 @@ export default function Pledge() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className='text-2xl md:text-3xl font-bold text-center mt-8 md:mt-14 px-4'
+                  className='text-2xl md:text-3xl font-bold text-center mt-8 md:mt-40 px-4'
                 >
-                  Fill Your Details to Take the Pledge
+                  Fill Out Your Details to Take the Pledge
                 </motion.h1>
 
                 <PledgeForm

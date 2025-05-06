@@ -11,7 +11,7 @@ import ImageGallery from '@/components/home/ImageGallery'
 import AboutSection from '@/components/home/AboutSection'
 import PrincipleSection from '@/components/home/PrincipleSection'
 
-const totalPledgeGoal = 1200
+const totalPledgeGoal = 1000
 
 export default function Home() {
   const router = useRouter()

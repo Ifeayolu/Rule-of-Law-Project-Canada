@@ -6,7 +6,7 @@ export default function HeroSection({ heroRef, heroInView }) {
   return (
     <div
       ref={heroRef}
-      className={`mt-12 text-center transition-all duration-1000 ${
+      className={`mt-18 text-center transition-all duration-1000 ${
         heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >

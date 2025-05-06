@@ -7,18 +7,17 @@ export default function PledgeModal({
   modalInView,
   pledgePercentage,
   pledgeCount,
-  commentsCount,
 }) {
   return (
     <div
       ref={modalRef}
-      className={`static md:absolute md:-top-48 right-0 flex flex-col md:flex-row w-full transition-all duration-1000 ${
+      className={`static md:absolute md:-top-53 right-0 flex flex-col md:flex-row w-full transition-all duration-1000 ${
         modalInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'
       }`}
     >
       <div className='w-full md:w-5/6'>
         <Image
-          src='/images/eastBlock.png'
+          src='/images/eastBlock1.png'
           alt='East Block'
           width={549}
           height={310}
@@ -90,27 +89,6 @@ export default function PledgeModal({
                 </motion.span>
               </AnimatePresence>
             </button>
-
-            {/* Comment count without the link */}
-            <div className='bg-[#F2EAE1] text-[#5F5F75] text-sm font-bold px-3 py-1 rounded-md flex items-center gap-2 transition-all duration-300'>
-              <Image
-                src='/images/comment.svg'
-                width={16}
-                height={16}
-                alt='Comment icon'
-              />
-              <AnimatePresence mode='wait'>
-                <motion.span
-                  key={commentsCount}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {commentsCount} comments
-                </motion.span>
-              </AnimatePresence>
-            </div>
           </div>
         </div>
       </div>

@@ -125,6 +125,7 @@ export default function AdminDashboard() {
         'Company',
         'Province',
         'Comment',
+        'Receive Updates',
         'Date',
       ]
 
@@ -134,6 +135,7 @@ export default function AdminDashboard() {
         comment.companyName || '',
         provinceMap[comment.province] || comment.province || '',
         comment.comment || '',
+        comment.receiveUpdates ? 'Yes' : 'No',
         new Date(comment.createdAt).toLocaleDateString('en-CA', {
           year: 'numeric',
           month: 'long',
@@ -159,12 +161,13 @@ export default function AdminDashboard() {
           lineColor: [80, 80, 80],
         },
         columnStyles: {
-          0: { cellWidth: 30 },
-          1: { cellWidth: 40 },
-          2: { cellWidth: 30 },
+          0: { cellWidth: 25 },
+          1: { cellWidth: 35 },
+          2: { cellWidth: 25 },
           3: { cellWidth: 25 },
-          4: { cellWidth: 85 },
-          5: { cellWidth: 25 },
+          4: { cellWidth: 65 },
+          5: { cellWidth: 20 },
+          6: { cellWidth: 25 },
         },
         margin: { top: 30, right: 14, bottom: 20, left: 14 },
         alternateRowStyles: {

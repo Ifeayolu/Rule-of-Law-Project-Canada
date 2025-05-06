@@ -6,7 +6,7 @@ export default function ImageGallery() {
   return (
     <div className='w-full max-w-5xl mx-auto mt-4 md:mt-12 overflow-hidden'>
       <motion.div
-        className='flex gap-4'
+        className='flex gap-6 w-max'
         animate={{
           x: ['0%', '-50%'],
         }}

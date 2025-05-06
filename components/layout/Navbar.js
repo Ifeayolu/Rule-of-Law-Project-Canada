@@ -37,7 +37,7 @@ export default function Navbar({ onAboutClick }) {
       <div className='flex items-center'>
         <Link href='/'>
           <Image
-            src='/images/Rule-of-Law-Canada.png'
+            src='/images/Rule-of-Law-Canada1.png'
             alt='Rule of Law Canada'
             width={227.45}
             height={48}

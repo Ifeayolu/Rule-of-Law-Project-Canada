@@ -6,7 +6,7 @@ export default function OathSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.6 }}
-      className='w-full max-w-4xl mx-auto mt-20 md:mt-40 px-4'
+      className='w-full max-w-4xl mx-auto mt-20 md:mt-48 px-4'
     >
       <h2 className='text-center text-xl md:text-2xl font-normal text-[#5F5F75] mb-4 md:mb-8'>
         OATH

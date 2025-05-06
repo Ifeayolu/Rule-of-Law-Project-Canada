@@ -123,7 +123,7 @@ export default function Pledge() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className='text-2xl md:text-3xl font-bold text-center mt-8 md:mt-40 px-4'
+                  className='text-2xl md:text-3xl font-bold text-center mt-8 md:mt-40'
                 >
                   Fill Out Your Details to Take the Pledge
                 </motion.h1>

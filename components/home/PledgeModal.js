@@ -26,7 +26,7 @@ export default function PledgeModal({
       </div>
 
       <div className='bg-white rounded-md shadow-lg w-full md:w-5/6 px-6 py-3 z-10 mt-4 md:mt-0'>
-        <div className='flex items-center gap-2 mb-2'>
+        <div className='flex items-center gap-2 mb-4'>
           <span>
             <Image
               src='/images/paperPlane.svg'
@@ -36,7 +36,7 @@ export default function PledgeModal({
             />
           </span>
           <h3 className='font-normal text-md text-[#5F5F75]'>
-            Pledge to support rule of law in Canada
+            Pledge to reaffirm your support for the rule of law in Canada
           </h3>
         </div>
         <h3 className='font-bold text-2xl mb-3 text-[#2B2B39]'>

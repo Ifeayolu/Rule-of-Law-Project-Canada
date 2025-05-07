@@ -6,7 +6,8 @@ export default async function handler(req, res) {
       const client = await clientPromise
       const db = client.db('pledge-website')
 
-      const { name, email, companyName, province, comment } = req.body
+      const { name, email, companyName, province, comment, receiveUpdates } =
+        req.body
 
       const result = await db.collection('pledges').insertOne({
         name,
@@ -14,6 +15,7 @@ export default async function handler(req, res) {
         companyName,
         province,
         comment,
+        receiveUpdates: Boolean(receiveUpdates),
         createdAt: new Date(),
       })
 

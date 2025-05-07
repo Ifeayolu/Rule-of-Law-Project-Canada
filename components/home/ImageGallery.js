@@ -4,7 +4,7 @@ import { galleryImages } from '@/data/galleryImages'
 
 export default function ImageGallery() {
   return (
-    <div className='w-full max-w-5xl mx-auto mt-4 md:mt-12 overflow-hidden'>
+    <div className='w-full max-w-5xl mx-auto mt-4 md:mt-16 overflow-hidden'>
       <motion.div
         className='flex gap-6 w-max'
         animate={{

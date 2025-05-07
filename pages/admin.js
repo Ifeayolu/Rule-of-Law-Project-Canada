@@ -313,7 +313,7 @@ export default function AdminDashboard() {
           </motion.div>
         </main>
       ) : (
-        <main className='pt-24 md:pt-32 max-w-6xl mx-auto px-4 pb-12'>
+        <main className='pt-24 md:pt-32 px-18 pb-12'>
           <div className='flex flex-wrap gap-2 justify-between items-center mb-8'>
             <h1 className='text-2xl md:text-4xl font-bold text-[#2B2B39]'>
               Admin Dashboard
@@ -399,6 +399,9 @@ export default function AdminDashboard() {
                           Company: {comment.companyName}
                         </p>
                       )}
+                      <p className='text-sm text-gray-600'>
+                        Receive Updates: {comment.receiveUpdates ? 'Yes' : 'No'}
+                      </p>
                     </div>
 
                     <div className='text-right md:text-right mt-2 md:mt-0'>
@@ -430,7 +433,9 @@ export default function AdminDashboard() {
         </main>
       )}
 
-      <Footer />
+      <div className='mt-auto'>
+        <Footer />
+      </div>
     </div>
   )
 }

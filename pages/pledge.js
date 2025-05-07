@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import OathSection from '@/components/pledge/OathSection'
 import PledgeForm from '@/components/pledge/PledgeForm'
 import ThankYouModal from '@/components/pledge/ThankYouModal'
 
@@ -17,6 +16,7 @@ export default function Pledge() {
     email: '',
     province: '',
     comment: '',
+    receiveUpdates: false,
   })
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const [error, setError] = React.useState('')
@@ -74,6 +74,7 @@ export default function Pledge() {
         email: '',
         province: '',
         comment: '',
+        receiveUpdates: false,
       })
 
       setPledgeCount((prev) => prev + 1)
@@ -138,13 +139,13 @@ export default function Pledge() {
                 />
               </div>
             </div>
-
-            <OathSection />
           </div>
         </div>
-      </main>
 
-      <Footer />
+        <div className='mt-50'>
+          <Footer />
+        </div>
+      </main>
 
       <ThankYouModal
         isOpen={showThankYou}

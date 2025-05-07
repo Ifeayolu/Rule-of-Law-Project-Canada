@@ -5,7 +5,6 @@ import { useInView } from 'react-intersection-observer'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/home/HeroSection'
-import MonumentSection from '@/components/home/MonumentSection'
 import PledgeModal from '@/components/home/PledgeModal'
 import ImageGallery from '@/components/home/ImageGallery'
 import AboutSection from '@/components/home/AboutSection'
@@ -84,11 +83,23 @@ export default function Home() {
         <HeroSection heroRef={heroRef} heroInView={heroInView} />
       </main>
 
-      <MonumentSection />
+      <AboutSection
+        principlesRef={principlesRef}
+        principlesInView={principlesInView}
+      />
 
-      <main className='mx-auto max-w-6xl px-4 pb-20'>
-        <div className='mt-12 relative w-full max-w-5xl mx-auto h-48'>
-          <div className='mt-12 relative z-10 w-full max-w-5xl mx-auto h-20'>
+      <div className='hidden md:block'>
+        <ImageGallery />
+      </div>
+
+      <PrincipleSection
+        principlesRef={principlesRef}
+        principlesInView={principlesInView}
+      />
+
+      <main className='mx-auto max-w-7xl px-4 pb-8 md:pb-98'>
+        <div className='relative w-full mt-8 md:mt-10'>
+          <div className='relative z-10 w-full mx-auto'>
             <PledgeModal
               modalRef={modalRef}
               modalInView={modalInView}
@@ -97,16 +108,7 @@ export default function Home() {
               commentsCount={commentsCount}
             />
           </div>
-          <div className='hidden md:block'>
-            <ImageGallery />
-          </div>
         </div>
-
-        <AboutSection />
-        <PrincipleSection
-          principlesRef={principlesRef}
-          principlesInView={principlesInView}
-        />
       </main>
 
       <Footer />

@@ -1,7 +1,12 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
+import { motion } from 'framer-motion'
 
 export default function Footer() {
+  const router = useRouter()
+
   const pathname = usePathname()
   const isPledgePage = pathname === '/pledge'
   const isCommentsPage = pathname === '/comments'
@@ -10,12 +15,24 @@ export default function Footer() {
   return (
     <>
       {!isPledgePage && !isCommentsPage && !isAdminPage && (
-        <footer className='bg-[#F5EFE0] text-white py-8 md:py-16 font-normal text-base md:text-lg'>
+        <footer className='bg-[#F5EFE0] text-white py-8 md:py-20 font-normal text-base md:text-lg'>
           <div className='max-w-6xl mx-auto px-4'>
-            <h2 className='text-[#2B2B39] font-bold text-2xl text-center mb-8'>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className='text-[#2B2B39] font-bold text-4xl text-center mb-15'
+            >
               What is the Rule of Law and why does it matter?{' '}
-            </h2>
-            <p className='mb-8 leading-relaxed text-[#2B2B39]'>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className='mb-8 leading-relaxed text-[#2B2B39]'
+            >
               Simply stated, it is a guiding principle used and followed in
               democratic societies to ensure that: (1) the people get to elect
               their government, and get to do so in fair and open elections, (2)
@@ -27,8 +44,14 @@ export default function Footer() {
               judiciary. Judges must be independent to ensure they interpret the
               law according to legal principles, and not according to personal
               bias, political affiliation or under undue pressure or coercion.
-            </p>
-            <p className='mb-8 leading-relaxed text-[#2B2B39]'>
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className='mb-8 leading-relaxed text-[#2B2B39]'
+            >
               In short, the rule of law guards against arbitrary exercise of
               government power, and ensures equal access to and protection under
               the law (protections like the right to due process/a fair
@@ -42,63 +65,130 @@ export default function Footer() {
               speech, or the right to life, liberty and security of the person.
               If a law is found to be unconstitutional, then it might be struck
               down as unenforceable.
-            </p>
+            </motion.p>
+
+            <div className='mt-30 text-center'>
+              <motion.button
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                onClick={() => router.push('/pledge')}
+                className='bg-[#C1351A] hover:bg-red-800 text-white font-bold px-6 md:px-8 py-2 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform text-sm md:text-base'
+              >
+                Take the Pledge
+              </motion.button>
+            </div>
           </div>
         </footer>
       )}
 
       {!isPledgePage && !isCommentsPage && !isAdminPage && (
-        <div className='max-w-6xl mx-auto px-4'>
-          <p className='my-30 leading-relaxed text-[#2B2B39] text-center font-bold'>
-            The Rule of Law Project has been started by a group of concerned
-            lawyers, who want to educate the public about the important role the
-            rule of law plays in our democracy, and to encourage lawyers and
-            others to stand up for the rule of law so that it does not get
-            eroded over time.
-          </p>
+        <div className='relative overflow-hidden py-16 md:py-20'>
+          <div className='absolute inset-0 z-0'>
+            <Image
+              src='/images/BigFlag.png'
+              alt='Background'
+              layout='fill'
+              objectFit='cover'
+              className='w-full h-full object-cover [object-position:center_40%]'
+              priority
+            />
+            <div className='absolute inset-0 bg-black/20' />{' '}
+          </div>
+
+          <div className='relative z-10 max-w-6xl mx-auto py-8 md:py-6'>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className='leading-relaxed text-white text-center font-normal text-base md:text-lg'
+            >
+              The Rule of Law Project was started by a group of concerned
+              lawyers, who want to educate the public about <br /> the important
+              role the rule of law plays in our democracy, and to encourage
+              lawyers and others to stand up for the rule of <br /> law so that
+              it does not get eroded over time.
+            </motion.p>
+          </div>
         </div>
       )}
 
       {!isPledgePage && !isCommentsPage && !isAdminPage && (
-        <footer className='bg-[#C1351A] text-white py-8 md:py-16 font-normal text-base md:text-lg'>
-          <div className='max-w-6xl mx-auto px-4'>
-            <p className='text-center mb-8 leading-relaxed'>
+        <footer className='bg-[#C1351A] text-white py-8 md:py-18 font-normal text-base md:text-lg'>
+          <div className='max-w-6xl mx-auto'>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className='text-center mb-8 leading-relaxed'
+            >
               The Rule of Law Project Canada is dedicated to creating a
-              community of lawyers that will <br /> work together to support the
-              rule of law. We welcome lawyers from all areas of practice. We{' '}
-              <br /> will strive to educate all Canadians on the importance of
+              community of lawyers that will work together to support <br />
+              the rule of law. We welcome lawyers from all areas of practice. We
+              will strive to educate all Canadians on the importance of <br />
               the rule of law.
-            </p>
+            </motion.p>
           </div>
         </footer>
       )}
 
       <footer className='bg-[#22130C] py-8'>
-        <div className='max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-8'>
+        <div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-8'>
           <div className='mb-6 md:mb-0'>
-            <p className='font-bold text-base text-[#FFFCF7]'>
-              Rule Of Law Canada
-            </p>
-            <p className='mt-4 md:mt-8 text-white max-w-md font-normal text-base md:text-lg'>
-              The Rule of Law is the bedrock on which Canada’s constitutional
-              democracy stands. It holds all people accountable to the law, and
-              protects the rights and freedoms that all Canadians are entitled
-              to enjoy in this free and democratic society.
-            </p>
-            <p className='mt-6 md:mt-10 text-sm text-[#FFFCF7] font-normal'>
-              Artist John Greer photo credit Jennifer Aitkens{' '}
-            </p>
-            <p className='mt-2 md:mt-4 text-sm text-[#FFFCF7] font-normal'>
-              © 2025 Rule of Law Canada
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className='font-bold text-base text-[#FFFCF7]'
+            >
+              Rule of Law Project Canada{' '}
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className='mt-4 md:mt-8 text-white max-w-md font-normal text-base md:text-lg'
+            >
+              The Rule of Law project Canada is the bedrock on which Canada’s
+              constitutional democracy stands. It holds all people accountable
+              to the law, and protects the rights and freedoms that all
+              Canadians are entitled to enjoy in this free and democratic
+              society.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+              className='mt-2 md:mt-24 text-sm text-[#FFFCF7] font-normal'
+            >
+              © 2025 Rule of Law Project Canada{' '}
+            </motion.p>
           </div>
 
           <div>
-            <h3 className='font-bold text-base text-[#FFFCF7] mb-4 md:mb-8'>
+            <motion.h3
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className='font-bold text-base text-[#FFFCF7] mb-4 md:mb-8'
+            >
               Links
-            </h3>
+            </motion.h3>
             <ul className='space-y-2 text-sm md:text-base text-[#FFFCF7] font-normal'>
-              <li>
+              <motion.li
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
                 <Link
                   href='https://lso.ca/about-lso/legislation-rules/rules-of-professional-conduct/complete-rules-of-professional-conduct'
                   target='_blank'
@@ -107,8 +197,13 @@ export default function Footer() {
                 >
                   LSO Rules of Professional Conduct
                 </Link>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
                 <Link
                   href='https://www.ontario.ca/laws/statute/90l08'
                   target='_blank'
@@ -117,8 +212,13 @@ export default function Footer() {
                 >
                   Ontario Law Society Act
                 </Link>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
                 <Link
                   href='https://lso.ca/about-lso/legislation-rules/by-laws'
                   target='_blank'
@@ -127,8 +227,13 @@ export default function Footer() {
                 >
                   LSO By-Laws
                 </Link>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
                 <Link
                   href='https://lso.ca/about-lso/legislation-rules/by-laws/by-law-4'
                   target='_blank'
@@ -137,7 +242,7 @@ export default function Footer() {
                 >
                   LSO By-Law 4
                 </Link>
-              </li>
+              </motion.li>
             </ul>
           </div>
         </div>

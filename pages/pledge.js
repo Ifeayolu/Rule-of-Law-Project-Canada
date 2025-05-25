@@ -119,16 +119,27 @@ export default function Pledge() {
           />
           <div className='max-w-6xl mx-auto relative z-10'>
             <div className='flex flex-col items-center'>
-              <div className='w-full md:w-2/3 lg:w-1/2'>
+              <div className='w-full'>
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className='text-2xl md:text-3xl font-bold text-center mt-8 md:mt-40'
                 >
-                  Fill Out Your Details to Take the Pledge
+                  Fill out this form to take the Rule of Law Pledge
                 </motion.h1>
 
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className='text-xl text-center mt-4'
+                >
+                  Your pledge will be counted and will be made public.
+                </motion.h2>
+              </div>
+
+              <div className='w-full md:w-2/3 lg:w-1/2'>
                 <PledgeForm
                   formData={formData}
                   isSubmitting={isSubmitting}

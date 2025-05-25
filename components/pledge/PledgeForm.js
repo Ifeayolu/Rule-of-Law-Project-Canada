@@ -261,7 +261,7 @@ export default function PledgeForm({
             Submitting...
           </div>
         ) : (
-          'Pledge'
+          'I take this Pledge'
         )}
       </button>
     </motion.form>

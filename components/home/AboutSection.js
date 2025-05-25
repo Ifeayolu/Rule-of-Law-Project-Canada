@@ -13,20 +13,10 @@ export default function AboutSection({ principlesRef, principlesInView }) {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className='text-xl sm:text-2xl md:text-4xl font-bold text-[#2B2B39] mb-6 sm:mb-8'
-      >
-        Coalition of Canadian Lawyers Supporting the Rule of Law
-      </motion.h2>
-
-      <motion.h3
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        viewport={{ once: true }}
-        className='text-lg sm:text-xl md:text-2xl font-semibold text-[#C1351A] mb-10 sm:mb-14'
+        className='text-xl sm:text-2xl md:text-5xl font-bold text-[#C1351A] mb-6 sm:mb-8'
       >
         THE RULE OF LAW PLEDGE
-      </motion.h3>
+      </motion.h2>
 
       <div
         ref={principlesRef}

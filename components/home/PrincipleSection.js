@@ -43,15 +43,23 @@ export default function PrincipleSection({ principlesRef, principlesInView }) {
           y: principlesInView ? 0 : 30,
         }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className='hidden md:flex flex-1 items-center justify-center min-h-[500px] order-1 md:order-2'
+        className='hidden md:flex flex-1 items-center justify-center min-h-[500px] order-1 md:order-2 relative'
       >
-        <Image
-          src='/images/teamConquerImage.png'
-          width={451}
-          height={313}
-          alt='teamConquer Image'
-          className='w-auto h-[370px] rounded-md'
-        />
+        <div className='relative'>
+          <Image
+            src='/images/teamConquerImage.png'
+            width={451}
+            height={313}
+            alt='teamConquer Image'
+            className='w-auto h-[370px] rounded-md'
+          />
+          <div
+            className='absolute bottom-2 right-1 text-white text-xs px-1 rounded shadow-lg'
+            style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+          >
+            Artist John Greer photo credit Jennifer Aitkens
+          </div>
+        </div>
       </motion.div>
     </div>
   )

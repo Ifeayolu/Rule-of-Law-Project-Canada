@@ -88,6 +88,15 @@ export default function Home() {
         principlesInView={principlesInView}
       />
 
+      <div className='my-20 text-center'>
+        <button
+          onClick={() => router.push('/pledge')}
+          className='bg-[#C1351A] hover:bg-red-800 text-white font-bold px-6 md:px-8 py-2 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform text-sm md:text-base'
+        >
+          Take the Pledge
+        </button>
+      </div>
+
       <div className='hidden md:block'>
         <ImageGallery />
       </div>

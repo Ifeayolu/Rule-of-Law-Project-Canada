@@ -9,7 +9,7 @@ export const principles = [
     icon: '/images/peopleTie.png',
     title: 'Legal work supporting the rule of law',
     description:
-      'We affirm our obligation to ensure access to justice for litigants in cases where the rule of law in Canada is at stake, and commit to providing legal services to support such cases, including pro bono work where necessary.',
+      'We will seek to ensure access to justice for litigants where the rule of law in Canada is at stake, including through pro bono work where necessary.',
   },
   {
     icon: '/images/lawSign.png',

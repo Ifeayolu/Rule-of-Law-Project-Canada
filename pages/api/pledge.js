@@ -38,7 +38,24 @@ export default async function handler(req, res) {
         comment: { $exists: true, $ne: '' },
       })
 
-      res.status(200).json({ count, commentsCount })
+      const pledges = await db
+        .collection('pledges')
+        .find({})
+        .sort({ createdAt: -1 })
+        .toArray()
+
+      const comments = await db
+        .collection('pledges')
+        .find({ comment: { $exists: true, $ne: '' } })
+        .sort({ createdAt: -1 })
+        .toArray()
+
+      res.status(200).json({
+        count,
+        commentsCount,
+        pledges,
+        comments,
+      })
     } catch (error) {
       res
         .status(500)

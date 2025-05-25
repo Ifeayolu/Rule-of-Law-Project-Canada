@@ -4,24 +4,15 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-export default function Navbar({ onAboutClick }) {
+export default function Navbar() {
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const isPledgePage = router.pathname === '/pledge'
   const isHomePage = router.pathname === '/'
+  const isAboutPage = router.pathname === '/about'
+  const isPledgePage = router.pathname === '/pledge'
+  const isProvincialPage = router.pathname === '/provincial-bylaws'
   const isAdminPage = router.pathname === '/admin'
-
-  const handleAboutClick = (e) => {
-    e.preventDefault()
-    setIsMenuOpen(false)
-
-    if (router.pathname === '/') {
-      onAboutClick?.()
-    } else {
-      router.push('/#about-section')
-    }
-  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -68,14 +59,22 @@ export default function Navbar({ onAboutClick }) {
       </button>
 
       <div className='hidden md:flex space-x-6'>
-        <button
-          onClick={handleAboutClick}
-          className={`text-sm font-bold transition-colors duration-300 hover:text-[#C1351A] cursor-pointer ${
+        <Link
+          href='/'
+          className={`text-sm font-bold transition-colors duration-300 hover:text-[#C1351A] ${
             isHomePage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
           }`}
         >
+          Home
+        </Link>
+        <Link
+          href='/about'
+          className={`text-sm font-bold transition-colors duration-300 hover:text-[#C1351A] ${
+            isAboutPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
+          }`}
+        >
           About
-        </button>
+        </Link>
         <Link
           href='/pledge'
           className={`text-sm font-bold transition-colors duration-300 hover:text-[#C1351A] ${
@@ -85,12 +84,12 @@ export default function Navbar({ onAboutClick }) {
           Pledge
         </Link>
         <Link
-          href='/admin'
+          href='/provincial-bylaws'
           className={`text-sm font-bold transition-colors duration-300 hover:text-[#C1351A] ${
-            isAdminPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
+            isProvincialPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
           }`}
         >
-          Admin
+          Provincial By-Laws
         </Link>
       </div>
 
@@ -100,22 +99,41 @@ export default function Navbar({ onAboutClick }) {
         className='md:hidden absolute top-full left-0 right-0 bg-white shadow-lg overflow-hidden'
       >
         <div className='flex flex-col p-4 space-y-4'>
-          <button
-            onClick={handleAboutClick}
-            className={`text-base font-bold transition-colors duration-300 hover:text-[#C1351A] cursor-pointer text-left ${
+          <Link
+            href='/'
+            className={`text-base font-bold transition-colors duration-300 hover:text-[#C1351A] text-left ${
               isHomePage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
             }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href='/about'
+            className={`text-base font-bold transition-colors duration-300 hover:text-[#C1351A] text-left ${
+              isAboutPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
+            }`}
+            onClick={() => setIsMenuOpen(false)}
           >
             About
-          </button>
+          </Link>
           <Link
             href='/pledge'
-            className={`text-base font-bold transition-colors duration-300 hover:text-[#C1351A] ${
+            className={`text-base font-bold transition-colors duration-300 hover:text-[#C1351A] text-left ${
               isPledgePage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
             Pledge
+          </Link>
+          <Link
+            href='/provincial-bylaws'
+            className={`text-base font-bold transition-colors duration-300 hover:text-[#C1351A] text-left ${
+              isProvincialPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Provincial By-Laws
           </Link>
         </div>
       </motion.div>

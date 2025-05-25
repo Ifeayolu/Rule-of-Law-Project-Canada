@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
 import { formatPledgeCount } from '@/utils/helpers'
 
@@ -7,7 +8,14 @@ export default function PledgeModal({
   modalInView,
   pledgePercentage,
   pledgeCount,
+  commentsCount,
 }) {
+  const router = useRouter()
+
+  const handleCommentsClick = () => {
+    router.push('/comments')
+  }
+
   return (
     <div
       ref={modalRef}
@@ -72,7 +80,10 @@ export default function PledgeModal({
 
         <div className='flex items-center justify-between mt-8'>
           <div className='flex items-center gap-3'>
-            <button className='bg-[#C1351A] text-white text-sm font-bold px-3 py-1 rounded-md flex items-center gap-2'>
+            <button
+              onClick={handleCommentsClick}
+              className='bg-[#C1351A] text-white text-sm font-bold px-3 py-1 rounded-md flex items-center gap-2'
+            >
               <Image
                 src='/images/peopleLaw.png'
                 width={13}
@@ -88,6 +99,29 @@ export default function PledgeModal({
                   transition={{ duration: 0.3 }}
                 >
                   {formatPledgeCount(pledgeCount)}
+                </motion.span>
+              </AnimatePresence>
+            </button>
+
+            <button
+              onClick={handleCommentsClick}
+              className='bg-[#F2EAE1] text-[#5F5F75] text-sm font-bold px-3 py-1 rounded-md flex items-center gap-2'
+            >
+              <Image
+                src='/images/comment.svg'
+                width={15}
+                height={15}
+                alt='comment icon'
+              />
+              <AnimatePresence mode='wait'>
+                <motion.span
+                  key={pledgeCount}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span>{commentsCount} Comments</span>
                 </motion.span>
               </AnimatePresence>
             </button>

@@ -134,7 +134,7 @@ export default function PledgeForm({
           htmlFor='companyName'
           className='block text-sm md:text-base font-bold text-black mb-1'
         >
-          Company name
+          Designation/Organization
         </label>
         <input
           type='text'

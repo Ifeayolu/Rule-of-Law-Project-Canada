@@ -634,7 +634,9 @@ export default function ProvincialByLaws() {
   return (
     <div className='min-h-screen bg-white'>
       <Head>
-        <title>Provincial By-Laws | Rule of Law Project Canada</title>
+        <title>
+          By-Laws and Oaths of Law Societies | Rule of Law Project Canada
+        </title>
         <meta
           name='description'
           content='Your duty to uphold the Rule of Law - Provincial By-Laws and Professional Conduct'
@@ -647,7 +649,7 @@ export default function ProvincialByLaws() {
       <div className='bg-[#F5EFE0] py-16 pt-30'>
         <div className='max-w-6xl mx-auto px-4 md:px-8 text-center'>
           <h1 className='text-3xl md:text-5xl font-bold text-[#2B2B39] mb-6'>
-            Provincial By-Laws
+            By-Laws and Oaths of Law Societies
           </h1>
           <div className='text-[#000000] font-bold text-2xl'>
             Your duty to uphold the Rule of Law

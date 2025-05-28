@@ -196,7 +196,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className='font-bold text-base text-[#FFFCF7] mb-4 md:mb-8'
             >
-              News
+              External Links
             </motion.h3>
             <ul className='space-y-2 text-sm md:text-base text-[#FFFCF7] font-normal'>
               <motion.li
@@ -241,7 +241,7 @@ export default function Footer() {
                   rel='noopener noreferrer'
                   className='hover:text-white transition-colors duration-300'
                 >
-                  Ontario’s 3 Justices Statement
+                  Statement of the Chief Justices of Ontario
                 </Link>
               </motion.li>
               <motion.li

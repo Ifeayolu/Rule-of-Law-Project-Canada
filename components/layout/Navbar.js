@@ -89,7 +89,7 @@ export default function Navbar() {
             isProvincialPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
           }`}
         >
-          Provincial By-Laws
+          By-Laws and Oaths of Law Societies
         </Link>
       </div>
 
@@ -133,7 +133,7 @@ export default function Navbar() {
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
-            Provincial By-Laws
+            By-Laws and Oaths of Law Societies
           </Link>
         </div>
       </motion.div>

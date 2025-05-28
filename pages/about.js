@@ -40,32 +40,39 @@ export default function About() {
           className='py-12 md:py-16'
         >
           <h1 className='text-3xl md:text-5xl font-bold text-[#2B2B39] mb-18'>
-            Introducing the Rule of Law Project
+            Introducing the Rule of Law Project <br /> Op-Ed
           </h1>
 
           <div className='grid grid-cols-1 lg:grid-cols-5 gap-12'>
             <div className='lg:col-span-3 space-y-6 text-[#5F5F75] text-lg leading-relaxed'>
               <p>
-                By March 2025, Canadian lawyers and paralegals were getting
-                increasingly anxious. Members of our professions have worked
-                long and hard to ensure that individual rights are respected and
-                that governments across Canada cannot discriminate against
-                people for their political or other beliefs. Could what is
-                happening in the US happen here? We wanted to say never, but now
-                we know how quickly things can change.
+                Canadians have long taken pride in the fact that they live in a
+                free and democratic society that is governed by the Rule of Law.
+                Members of the legal profession have worked hard to ensure that
+                individual rights are respected; that governments across Canada
+                cannot discriminate against people for their political or other
+                beliefs; that everyone - including government - is accountable
+                to the law; and that no one is above the law. This system
+                requires that legal cases be decided according to the law, by an
+                independent and fair judiciary. However, in recent months we
+                have seen how fragile the Rule of Law can be and how quickly it
+                can be eroded. Could the Rule of Law be attacked and eroded in
+                Canada? The answer is yes, it could. The Rule of Law, like
+                democracy itself, is more than a concept or ideal. Its very
+                existence depends on the purposeful actions of government and
+                citizens alike. The Rule of Law and democracy both require
+                action.
               </p>
 
               <p>
-                Senior lawyer, Sandra Barton, had lost enough sleep after
-                reading the news and felt compelled to act to protect our legal
-                system. She started speaking with colleagues and gathered a
-                group of lawyers and academics to work on a simple idea:
-                Canadian lawyers should form a coalition and pledge to uphold
-                the rule of law. Together we can prevent undue government
-                influence from interfering with the independence of our legal
-                system. Sandra’s team has worked together through a frank and
-                supportive dialogue to draft a pledge for legal professionals
-                that reads:
+                These questions prompted a conversation between a small group of
+                lawyers and academics about what we Canadians can collectively
+                do to protect, promote, and nourish the Rule of Law here in
+                Canada. While there will be more to come, we thought we could
+                start with this simple idea: Canadian lawyers should unite and
+                collectively pledge to uphold the Rule of Law. This group has
+                worked together through frank and supportive dialogue to draft a
+                pledge for legal professionals that reads:
               </p>
 
               <div className='space-y-8 mt-8'>
@@ -109,40 +116,51 @@ export default function About() {
               </div>
 
               <p>
-                This pledge may seem redundant. We wish it were. Lawyers and
-                paralegals across Canada take an oath when they are called to
-                the Bar or licensed to practice. Most provincial and territorial
-                oaths for lawyers and paralegals contain a commitment to uphold
-                the rule of law and the administration of justice. In Ontario,
-                lawyers and paralegals swear:
+                Lawyers across Canada take an oath when they are called to the
+                Bar. Most provincial and territorial oaths for lawyers contain a
+                commitment to uphold the rule of law and the administration of
+                justice. In Ontario, lawyers swear:
               </p>
 
-              <p className=' text-[#5F5F75] font-bold'>
+              <p className=' text-[#5F5F75]'>
                 I shall not pervert the law to favour or prejudice any one, but
                 in all things I shall conduct myself honestly and with integrity
                 and civility. I shall seek to ensure access to justice and
                 access to legal services. I shall seek to improve the
-                administration of justice. I shall champion the rule of law and
-                safeguard the rights and freedoms of all persons.
+                administration of justice.{' '}
+                <strong>
+                  I shall champion the rule of law and safeguard the rights and
+                  freedoms of all persons.
+                </strong>
               </p>
 
               <p>
-                Through this pledge, we reaffirm the commitments we made in our
-                oaths. We also commit to protecting the independence of our
-                judicial system and will support any pledge member’s resistance
-                efforts if they become subject to undue harm or interference by
-                any arm of any Canadian government. Instead of being redundant,
-                taking the pledge is a simple, yet necessary, reminder and
-                confirmation of our commitment to our roles as lawyers and
-                paralegals. We support the foundations of our Canadian
-                democracy.
+                In light of these oaths, the pledge may seem redundant. We wish
+                it were. We cannot take the Rule of Law for granted. We must be
+                vigilant in our role as guardians of a free and democratic
+                society. Through this pledge, we reaffirm the commitments we
+                made in our oaths. We also commit to protecting the independence
+                of our judicial system and will support any pledge member’s
+                resistance efforts if they become subject to undue harm or
+                interference by any arm of any Canadian government. Instead of
+                being redundant, taking the pledge is a simple, yet necessary
+                reminder and confirmation of our commitment to our roles as
+                lawyers. We support the foundations of our Canadian democracy.
               </p>
 
               <p>
-                We are calling all Canadian lawyers and paralegals to join us
-                and sign this pledge. Together we can protect the institutions
-                that protect us.
+                We are calling all Canadian lawyers to join us and sign the
+                pledge at https://www.ruleoflawproject.ca. Together we can
+                protect the institutions that protect us.
               </p>
+              <div>
+                <p>Sandra Barton</p>
+                <p>Sheila Block</p>
+                <p>Gerald Chan</p>
+                <p>Jennifer Orange</p>
+                <p>Lindsay Scott</p>
+                <p>Jake Okechukwu Effoduh</p>
+              </div>
 
               <div className='text-center mt-30 mb-10'>
                 <Link

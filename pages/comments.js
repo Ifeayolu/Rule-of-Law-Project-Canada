@@ -160,11 +160,8 @@ export default function Comments() {
         >
           <div className='flex items-center justify-between mb-8'>
             <div>
-              <h2 className='text-xl md:text-2xl font-bold text-[#2B2B39] mb-3'>
-                Comments
-              </h2>
-              <h1 className='text-2xl md:text-4xl font-bold text-[#2B2B39] mb-4'>
-                Pledgers
+              <h1 className='text-2xl md:text-4xl font-bold text-[#2B2B39]'>
+                Signed by
               </h1>
             </div>
           </div>
@@ -187,15 +184,7 @@ export default function Comments() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className='bg-white rounded-lg p-6 shadow-sm border border-gray-100'
                 >
-                  {comment.comment && (
-                    <div className='mb-6 max-h-24 overflow-y-auto pr-2 no-scrollbar'>
-                      <p className='text-[#2B2B39] leading-relaxed  whitespace-pre-wrap'>
-                        {comment.comment}
-                      </p>
-                    </div>
-                  )}
-
-                  <div className='flex items-start gap-4 pt-6'>
+                  <div className='flex items-start gap-4 pt-2'>
                     <Image
                       src='/images/avatar.png'
                       alt='User avatar'
@@ -225,20 +214,6 @@ export default function Comments() {
                           <span className='text-sm text-[#5F5F75]'>
                             {provinceMap[comment.province] || comment.province}
                           </span>
-                        </div>
-                      )}
-
-                      {comment.createdAt && (
-                        <div className='mt-2 text-xs text-gray-400'>
-                          Pledged on{' '}
-                          {new Date(comment.createdAt).toLocaleDateString(
-                            'en-CA',
-                            {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            }
-                          )}
                         </div>
                       )}
                     </div>

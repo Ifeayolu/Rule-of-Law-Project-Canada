@@ -40,7 +40,7 @@ export default function About() {
           className='py-12 md:py-16'
         >
           <h1 className='text-3xl md:text-5xl font-bold text-[#2B2B39] mb-18'>
-            Introducing the Rule of Law Project <br /> Op-Ed
+            Introducing the Rule of Law Project
           </h1>
 
           <div className='grid grid-cols-1 lg:grid-cols-5 gap-12'>
@@ -149,9 +149,9 @@ export default function About() {
               </p>
 
               <p>
-                We are calling all Canadian lawyers to join us and sign the
-                pledge at https://www.ruleoflawproject.ca. Together we can
-                protect the institutions that protect us.
+                We are calling all Canadian lawyers to join us and sign this
+                pledge. Together we can protect the institutions that protect
+                us.
               </p>
               <div>
                 <p>Sandra Barton</p>

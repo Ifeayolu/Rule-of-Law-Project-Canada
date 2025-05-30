@@ -15,7 +15,7 @@ export default function Comments() {
   const [commentsCount, setCommentsCount] = React.useState(0)
   const [loading, setLoading] = React.useState(true)
 
-  const commentsPerPage = 4
+  const commentsPerPage = 10
 
   React.useEffect(() => {
     fetchData()

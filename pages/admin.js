@@ -8,8 +8,8 @@ import Footer from '@/components/layout/Footer'
 import { provinceMap } from '@/data/provinces'
 
 export default function AdminDashboard() {
-  const [comments, setComments] = React.useState([])
-  const [pledges, setPledges] = React.useState({ total: 0, withComments: 0 })
+  const [allPledges, setAllPledges] = React.useState([])
+  const [pledges, setPledges] = React.useState({ total: 0 })
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState('')
   const [isAuthenticated, setIsAuthenticated] = React.useState(false)
@@ -58,8 +58,8 @@ export default function AdminDashboard() {
   const handleLogout = () => {
     setIsAuthenticated(false)
     localStorage.removeItem('adminAuth')
-    setComments([])
-    setPledges({ total: 0, withComments: 0 })
+    setAllPledges([])
+    setPledges({ total: 0 })
     setPassword('')
     setShowPassword(false)
   }
@@ -67,27 +67,17 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     setLoading(true)
     try {
-      const commentsResponse = await fetch('/api/comments')
-      const commentsData = await commentsResponse.json()
+      const pledgesResponse = await fetch('/api/pledge')
+      const pledgesData = await pledgesResponse.json()
 
-      if (!commentsResponse.ok) {
-        throw new Error(commentsData.message || 'Failed to fetch comments')
+      if (!pledgesResponse.ok) {
+        throw new Error(pledgesData.message || 'Failed to fetch pledges')
       }
 
-      setComments(commentsData.comments)
-
-      const statsResponse = await fetch('/api/pledge')
-      const statsData = await statsResponse.json()
-
-      if (!statsResponse.ok) {
-        throw new Error(
-          statsData.message || 'Failed to fetch pledge statistics'
-        )
-      }
+      setAllPledges(pledgesData.pledges || [])
 
       setPledges({
-        total: statsData.count || 0,
-        withComments: statsData.commentsCount || 0,
+        total: pledgesData.count || 0,
       })
     } catch (error) {
       console.error('Error fetching data:', error)
@@ -102,6 +92,19 @@ export default function AdminDashboard() {
     setExportLoading(true)
 
     try {
+      let pledgesToExport = allPledges
+
+      if (pledgesToExport.length === 0) {
+        const pledgesResponse = await fetch('/api/pledge')
+        const pledgesData = await pledgesResponse.json()
+
+        if (!pledgesResponse.ok) {
+          throw new Error('Failed to fetch pledge data')
+        }
+
+        pledgesToExport = pledgesData.pledges || []
+      }
+
       const doc = new jsPDF({
         orientation: 'landscape',
         unit: 'mm',
@@ -118,25 +121,24 @@ export default function AdminDashboard() {
       })
       doc.setFontSize(10)
       doc.text(`Generated: ${today}`, 14, 22)
+      doc.text(`Total Pledges: ${pledgesToExport.length}`, 14, 27)
 
       const tableHeaders = [
         'Name',
         'Email',
         'Company',
         'Province',
-        'Comment',
         'Receive Updates',
         'Date',
       ]
 
-      const tableData = comments.map((comment) => [
-        comment.name || '',
-        comment.email || '',
-        comment.companyName || '',
-        provinceMap[comment.province] || comment.province || '',
-        comment.comment || '',
-        comment.receiveUpdates ? 'Yes' : 'No',
-        new Date(comment.createdAt).toLocaleDateString('en-CA', {
+      const tableData = pledgesToExport.map((pledge) => [
+        pledge.name || '',
+        pledge.email || '',
+        pledge.companyName || '',
+        provinceMap[pledge.province] || pledge.province || '',
+        pledge.receiveUpdates ? 'Yes' : 'No',
+        new Date(pledge.createdAt).toLocaleDateString('en-CA', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
@@ -144,7 +146,7 @@ export default function AdminDashboard() {
       ])
 
       autoTable(doc, {
-        startY: 30,
+        startY: 35,
         head: [tableHeaders],
         body: tableData,
         headStyles: {
@@ -161,15 +163,14 @@ export default function AdminDashboard() {
           lineColor: [80, 80, 80],
         },
         columnStyles: {
-          0: { cellWidth: 25 },
-          1: { cellWidth: 35 },
-          2: { cellWidth: 25 },
+          0: { cellWidth: 35 },
+          1: { cellWidth: 45 },
+          2: { cellWidth: 35 },
           3: { cellWidth: 25 },
-          4: { cellWidth: 65 },
-          5: { cellWidth: 20 },
-          6: { cellWidth: 25 },
+          4: { cellWidth: 25 },
+          5: { cellWidth: 30 },
         },
-        margin: { top: 30, right: 14, bottom: 20, left: 14 },
+        margin: { top: 35, right: 14, bottom: 20, left: 14 },
         alternateRowStyles: {
           fillColor: [245, 245, 245],
         },
@@ -202,7 +203,7 @@ export default function AdminDashboard() {
         },
       })
 
-      doc.save('pledges-export.pdf')
+      doc.save('all-pledges-export.pdf')
     } catch (error) {
       console.error('Export error:', error)
       setExportError(`Error generating PDF: ${error.message}`)
@@ -341,8 +342,8 @@ export default function AdminDashboard() {
             <div className='text-red-600 mb-4'>{exportError}</div>
           )}
 
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-8'>
-            <div className='bg-white p-6 rounded-lg shadow-md'>
+          <div className='grid grid-cols-1 gap-4 mb-8'>
+            <div className='bg-white p-6 rounded-lg shadow-md text-center'>
               <h3 className='text-lg font-semibold text-gray-600 mb-2'>
                 Total Pledges
               </h3>
@@ -350,20 +351,11 @@ export default function AdminDashboard() {
                 {pledges.total}
               </p>
             </div>
-
-            <div className='bg-white p-6 rounded-lg shadow-md'>
-              <h3 className='text-lg font-semibold text-gray-600 mb-2'>
-                Comments Received
-              </h3>
-              <p className='text-3xl font-bold text-[#2B2B39]'>
-                {pledges.withComments}
-              </p>
-            </div>
           </div>
 
           <div className='bg-white p-6 rounded-lg shadow-md'>
             <h2 className='text-xl font-bold text-[#2B2B39] mb-4'>
-              Comments ({comments.length})
+              Pledges ({allPledges.length})
             </h2>
 
             {loading && (
@@ -376,40 +368,40 @@ export default function AdminDashboard() {
               <div className='text-center text-red-600 mb-4'>{error}</div>
             )}
 
-            {!loading && comments.length === 0 && (
+            {!loading && allPledges.length === 0 && (
               <p className='text-gray-500 text-center py-4'>
-                No comments found.
+                No pledges loaded. Download PDF to export all pledges.
               </p>
             )}
 
             <div className='space-y-4'>
-              {comments.map((comment) => (
+              {allPledges.slice(0, 20).map((pledge) => (
                 <div
-                  key={comment._id}
+                  key={pledge._id}
                   className='border rounded-lg p-4 bg-gray-50'
                 >
                   <div className='flex flex-col md:flex-row justify-between mb-2'>
                     <div>
                       <h3 className='font-bold text-[#2B2B39]'>
-                        {comment.name}
+                        {pledge.name}
                       </h3>
-                      <p className='text-sm text-gray-600'>{comment.email}</p>
-                      {comment.companyName && (
+                      <p className='text-sm text-gray-600'>{pledge.email}</p>
+                      {pledge.companyName && (
                         <p className='text-sm text-gray-600'>
-                          Company: {comment.companyName}
+                          Company: {pledge.companyName}
                         </p>
                       )}
                       <p className='text-sm text-gray-600'>
-                        Receive Updates: {comment.receiveUpdates ? 'Yes' : 'No'}
+                        Receive Updates: {pledge.receiveUpdates ? 'Yes' : 'No'}
                       </p>
                     </div>
 
                     <div className='text-right md:text-right mt-2 md:mt-0'>
                       <p className='text-sm text-[#5F5F75] font-semibold'>
-                        {provinceMap[comment.province] || comment.province}
+                        {provinceMap[pledge.province] || pledge.province}
                       </p>
                       <p className='text-sm text-[#5F5F75] font-medium'>
-                        {new Date(comment.createdAt).toLocaleDateString(
+                        {new Date(pledge.createdAt).toLocaleDateString(
                           'en-CA',
                           {
                             year: 'numeric',
@@ -420,14 +412,14 @@ export default function AdminDashboard() {
                       </p>
                     </div>
                   </div>
-
-                  <div className='mt-2 border-t pt-2'>
-                    <p className='whitespace-pre-wrap text-gray-800'>
-                      {comment.comment}
-                    </p>
-                  </div>
                 </div>
               ))}
+
+              {allPledges.length > 20 && (
+                <div className='text-center text-gray-500 py-4'>
+                  Showing first 20 pledges. Download PDF to see all pledges.
+                </div>
+              )}
             </div>
           </div>
         </main>

@@ -85,36 +85,25 @@ export default function ProvincialByLaws() {
       },
       {
         tag: 'Alberta',
-        title: 'Official oath',
+
         content: (
           <div>
-            <strong>2</strong> When by a statute of Alberta a person is required
-            to take an official oath on
+            Rule 65.2(8) of the Rules of the Law Society of Alberta sets out the
+            oath:
             <br />
             <br />
-            <div className='ml-4'>
-              <strong>(a)</strong> being appointed to an office other than that
-              of judge or justice of the peace, or
-              <br />
-              <strong>(b)</strong> being admitted to a profession or calling,
+            <div>
+              I will as a Barrister and Solicitor conduct all causes and matters
+              faithfully and to the best of my ability. I will not seek to
+              destroy anyone&apos;s property. I will not promote suits upon
+              frivolous pretences. I will not pervert the law to favour or
+              prejudice anyone, but in all things will conduct myself truly and
+              with integrity. I will uphold and maintain the Sovereign&apos;s
+              interest and that of the public according to the law in force in
+              Alberta.
             </div>
-            <br />
-            the oath shall be taken in the following form:
-            <br />
-            <br />
-            <div className='italic bg-gray-50 p-4 border-l-4 border-[#C1351A] rounded'>
-              I, swear that I will diligently, faithfully and to the best of my
-              ability execute according to law the office of
-              <br />
-              <br />
-              So help me God.
-            </div>
-            <br />
-            RSA 1980 cO‑1 s2
           </div>
         ),
-        section:
-          's.1(2), Oaths of Office Act, as prescribed by s. 44(2)(a) of the Legal Profession Act',
       },
       {
         tag: 'British Columbia',

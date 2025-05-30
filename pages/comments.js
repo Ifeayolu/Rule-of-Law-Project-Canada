@@ -131,7 +131,7 @@ export default function Comments() {
       <div className='min-h-screen bg-[#fffcf7] flex items-center justify-center'>
         <div className='text-center'>
           <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-[#C1351A] mx-auto mb-4'></div>
-          <p className='text-[#5F5F75]'>Loading comments...</p>
+          <p className='text-[#5F5F75]'>Loading Pledges...</p>
         </div>
       </div>
     )

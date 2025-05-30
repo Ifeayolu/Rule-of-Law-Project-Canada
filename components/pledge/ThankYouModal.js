@@ -5,10 +5,7 @@ import { useState } from 'react'
 export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
   const router = useRouter()
   const [isCopied, setIsCopied] = useState(false)
-  const shareUrl =
-    typeof window !== 'undefined'
-      ? window.location.origin
-      : 'https://ruleoflawprojectcanada.netlify.app/'
+  const shareUrl = 'https://ruleoflawproject.ca'
 
   const shareMessage = `I've joined ${
     pledgeCount || 0

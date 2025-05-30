@@ -89,7 +89,7 @@ export default function PledgeForm({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
       onSubmit={handleSubmit}
-      className='bg-white rounded-md p-4 md:p-8 text-gray-800 flex flex-col mt-8 md:mt-18 shadow-lg'
+      className='bg-white rounded-md p-4 md:p-8 text-gray-800 flex flex-col mt-8 md:mt-30 shadow-lg'
     >
       {success && (
         <motion.div
@@ -111,7 +111,7 @@ export default function PledgeForm({
         </motion.div>
       )}
 
-      <div className='mb-4 md:mb-6'>
+      <div className='mb-4 md:mb-10'>
         <label
           htmlFor='name'
           className='block text-sm md:text-base font-bold text-black mb-1'
@@ -129,7 +129,7 @@ export default function PledgeForm({
         />
       </div>
 
-      <div className='mb-4 md:mb-6'>
+      <div className='mb-4 md:mb-10'>
         <label
           htmlFor='companyName'
           className='block text-sm md:text-base font-bold text-black mb-1'
@@ -146,7 +146,7 @@ export default function PledgeForm({
         />
       </div>
 
-      <div className='mb-4 md:mb-6'>
+      <div className='mb-4 md:mb-10'>
         <label
           htmlFor='email'
           className='block text-sm md:text-base font-bold text-black mb-1'
@@ -198,23 +198,6 @@ export default function PledgeForm({
             </option>
           ))}
         </select>
-      </div>
-
-      <div className='mb-8 md:mb-10'>
-        <label
-          htmlFor='comment'
-          className='block text-sm md:text-base font-bold text-black mb-1'
-        >
-          Comment
-        </label>
-        <textarea
-          id='comment'
-          name='comment'
-          value={formData.comment}
-          onChange={handleInputChange}
-          rows='6'
-          className='w-full p-2 border border-gray-300 rounded resize-none transition-all duration-300 focus:border-[#C1351A] focus:ring-1 focus:ring-[#C1351A] focus:outline-none'
-        />
       </div>
 
       <div className='my-12 flex items-start'>

@@ -260,6 +260,24 @@ export default function Footer() {
                 </Link>
               </motion.li>
             </ul>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+              className='mt-8'
+            >
+              <p className='text-sm md:text-base text-[#FFFCF7] font-normal'>
+                You can reach us and share your comments at
+              </p>
+              <Link
+                href='mailto:info@ruleoflawproject.ca'
+                className='text-sm md:text-base text-[#FFFCF7] font-bold hover:text-white transition-colors duration-300'
+              >
+                info@ruleoflawproject.ca
+              </Link>
+            </motion.div>
           </div>
         </div>
       </footer>

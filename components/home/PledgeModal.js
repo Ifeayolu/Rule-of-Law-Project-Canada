@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { formatPledgeCount } from '@/utils/helpers'
 
 export default function PledgeModal({
@@ -10,6 +11,7 @@ export default function PledgeModal({
   pledgeCount,
   commentsCount,
 }) {
+  const { t } = useTranslation()
   const router = useRouter()
 
   const handleCommentsClick = () => {
@@ -44,21 +46,13 @@ export default function PledgeModal({
             />
           </span>
           <h3 className='font-normal text-md text-[#5F5F75]'>
-            Pledge to reaffirm your commitment for the rule of law in Canada{' '}
+            {t('pledgeToReaffirm')}
           </h3>
         </div>
         <h3 className='font-bold text-2xl mb-3 text-[#2B2B39]'>
-          Take the Pledge!
+          {t('takePledgeExclamation')}
         </h3>
-        <p className='text-sm text-gray-600 mb-4'>
-          Our democracy stands on the bedrock of the Rule of Law. The Rule of
-          Law - like democracy - must be exercised and protected. History has
-          shown how quickly a democracy can be eroded when good people do
-          nothing, when laws and judges are not obeyed, and when the legal bar
-          is silenced or simply stays silent. Today, we are asking you not to
-          stay silent, to take the pledge and renew your oath to protect the
-          Rule of Law in Canada.
-        </p>
+        <p className='text-sm text-gray-600 mb-4'>{t('democracyStands')}</p>
         <div className='flex items-center gap-2 mt-6'>
           <Image
             src='/images/map-marker.svg'
@@ -66,7 +60,9 @@ export default function PledgeModal({
             height={16}
             alt='map marker'
           />
-          <h2 className='font-normal text-base text-[#5F5F75]'>Canada</h2>
+          <h2 className='font-normal text-base text-[#5F5F75]'>
+            {t('canada')}
+          </h2>
         </div>
         <div className='w-full h-1 bg-[#F2EAE1] mt-1 rounded-full'>
           <div

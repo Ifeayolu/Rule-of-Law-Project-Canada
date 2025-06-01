@@ -3,12 +3,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import PledgeForm from '@/components/pledge/PledgeForm'
 import ThankYouModal from '@/components/pledge/ThankYouModal'
 
 export default function Pledge() {
+  const { t } = useTranslation()
   const router = useRouter()
   const [formData, setFormData] = React.useState({
     name: '',
@@ -95,11 +97,8 @@ export default function Pledge() {
   return (
     <div className='min-h-screen'>
       <Head>
-        <title>Take the Pledge | Rule of Law Canada</title>
-        <meta
-          name='description'
-          content='Pledge your support for the Rule of Law in Canada'
-        />
+        <title>{t('takePledgeTitle')}</title>
+        <meta name='description' content={t('pledgeSupport')} />
         <link rel='icon' href='/favicon.ico' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
@@ -126,7 +125,7 @@ export default function Pledge() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className='text-2xl md:text-3xl font-bold text-center mt-8 md:mt-40'
                 >
-                  Fill out this form to take the Rule of Law Pledge
+                  {t('fillOutForm')}
                 </motion.h1>
 
                 <motion.h2
@@ -135,7 +134,7 @@ export default function Pledge() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className='text-xl text-center mt-4'
                 >
-                  Your pledge will be counted and will be made public.
+                  {t('pledgeCountedPublic')}
                 </motion.h2>
               </div>
 

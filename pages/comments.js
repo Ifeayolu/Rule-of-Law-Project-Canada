@@ -2,12 +2,14 @@ import React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { provinceMap } from '@/data/provinces'
 import Image from 'next/image'
 
 export default function Comments() {
+  const { t } = useTranslation()
   const router = useRouter()
   const [currentPage, setCurrentPage] = React.useState(1)
   const [comments, setComments] = React.useState([])
@@ -93,7 +95,7 @@ export default function Comments() {
           disabled={currentPage === 1}
           className='px-6 py-2 text-sm font-bold text-[#5F5F75] bg-[#F2EAE1] rounded-lg hover:bg-[#F2EAE1] disabled:opacity-50 disabled:cursor-not-allowed transition-colors'
         >
-          Prev
+          {t('prev')}
         </button>
 
         {getPageNumbers().map((pageNum, index) => (
@@ -120,7 +122,7 @@ export default function Comments() {
           disabled={currentPage === totalPages}
           className='px-4 py-2 text-sm font-bold text-white bg-[#C1351A] rounded-lg hover:bg-[#A02E17] disabled:opacity-50 disabled:cursor-not-allowed transition-colors'
         >
-          Next
+          {t('next')}
         </button>
       </div>
     )
@@ -131,7 +133,7 @@ export default function Comments() {
       <div className='min-h-screen bg-[#fffcf7] flex items-center justify-center'>
         <div className='text-center'>
           <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-[#C1351A] mx-auto mb-4'></div>
-          <p className='text-[#5F5F75]'>Loading Pledges...</p>
+          <p className='text-[#5F5F75]'>{t('loadingPledges')}</p>
         </div>
       </div>
     )
@@ -140,7 +142,7 @@ export default function Comments() {
   return (
     <div className='min-h-screen bg-[#fffcf7] flex flex-col'>
       <Head>
-        <title>Pledges | Rule of Law Canada</title>
+        <title>{t('pledges')} | Rule of Law Canada</title>
         <meta
           name='description'
           content='View all pledges for the Rule of Law in Canada'
@@ -161,7 +163,7 @@ export default function Comments() {
           <div className='flex items-center justify-between mb-8'>
             <div>
               <h1 className='text-2xl md:text-4xl font-bold text-[#2B2B39]'>
-                Signed by
+                {t('signedBy')}
               </h1>
             </div>
           </div>
@@ -169,9 +171,7 @@ export default function Comments() {
 
         {comments.length === 0 ? (
           <div className='text-center py-12'>
-            <p className='text-[#5F5F75] text-lg'>
-              No pledges yet. Be the first to take the pledge!
-            </p>
+            <p className='text-[#5F5F75] text-lg'>{t('noPledgesYet')}</p>
           </div>
         ) : (
           <>
@@ -195,7 +195,7 @@ export default function Comments() {
 
                     <div className='flex-1'>
                       <h3 className='font-bold text-[#2B2B39] text-lg mb-1'>
-                        {comment.name || 'Anonymous'}
+                        {comment.name || t('anonymous')}
                       </h3>
                       {comment.companyName && (
                         <p className='text-sm text-[#5F5F75] mb-1'>

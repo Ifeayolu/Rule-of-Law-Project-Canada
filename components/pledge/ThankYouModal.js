@@ -1,15 +1,15 @@
+import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
+  const { t } = useTranslation()
   const router = useRouter()
-  const [isCopied, setIsCopied] = useState(false)
+  const [isCopied, setIsCopied] = React.useState(false)
   const shareUrl = 'https://ruleoflawproject.ca'
 
-  const shareMessage = `I've joined ${
-    pledgeCount || 0
-  } champions upholding the Rule of Law in Canada. Join us!`
+  const shareMessage = t('shareMessage', { count: pledgeCount || 0 })
 
   if (!isOpen) return null
 
@@ -40,7 +40,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
     shareUrl
   )}&summary=${encodeURIComponent(shareMessage)}`
   const emailLink = `mailto:?subject=${encodeURIComponent(
-    'Rule of Law Pledge'
+    t('emailSubject')
   )}&body=${encodeURIComponent(shareMessage + '\n\n' + shareUrl)}`
 
   const copyToClipboard = () => {
@@ -115,12 +115,10 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                 </div>
 
                 <h2 className='text-xl md:text-2xl lg:text-3xl font-bold'>
-                  Justice Champion!
+                  {t('justiceChampion')}
                 </h2>
                 <p className='mt-1 md:mt-2 text-base md:text-lg'>
-                  Thank you for reaffirming your commitment to the Rule of Law
-                  in Canada. Would you like to share this pledge with other
-                  lawyers?
+                  {t('thankYouModalDescription')}
                 </p>
 
                 <motion.div
@@ -142,7 +140,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
               <div className='p-4 md:p-6'>
                 <div className='bg-gray-100 rounded-lg p-3 md:p-4 mb-4 md:mb-6 text-center'>
                   <p className='text-sm md:text-base text-gray-600'>
-                    You have joined a movement of
+                    {t('youHaveJoined')}
                   </p>
                   <motion.p
                     initial={{ scale: 1 }}
@@ -153,13 +151,13 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                     {pledgeCount || 0}
                   </motion.p>
                   <p className='text-sm md:text-base text-gray-600'>
-                    champions upholding the Rule of Law
+                    {t('championsUpholding')}
                   </p>
                 </div>
 
                 <div className='mb-5'>
                   <p className='text-center font-semibold text-gray-700 mb-3'>
-                    Share your pledge:
+                    {t('shareYourPledge')}
                   </p>
                   <div className='flex justify-center space-x-3 mb-3'>
                     <motion.a
@@ -169,7 +167,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className='bg-[#25D366] text-white p-2 rounded-full'
-                      aria-label='Share on WhatsApp'
+                      aria-label={t('shareOnWhatsApp')}
                     >
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -189,7 +187,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className='bg-black text-white p-2 rounded-full'
-                      aria-label='Share on Twitter/X'
+                      aria-label={t('shareOnTwitter')}
                     >
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -209,7 +207,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className='bg-[#0088cc] text-white p-2 rounded-full'
-                      aria-label='Share on Telegram'
+                      aria-label={t('shareOnTelegram')}
                     >
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -229,7 +227,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className='bg-[#0077B5] text-white p-2 rounded-full'
-                      aria-label='Share on LinkedIn'
+                      aria-label={t('shareOnLinkedIn')}
                     >
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -247,7 +245,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className='bg-gray-600 text-white p-2 rounded-full'
-                      aria-label='Share via Email'
+                      aria-label={t('shareViaEmail')}
                     >
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -287,7 +285,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                               clipRule='evenodd'
                             />
                           </svg>
-                          <span>Copied!</span>
+                          <span>{t('copied')}</span>
                         </>
                       ) : (
                         <>
@@ -305,7 +303,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                               d='M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z'
                             />
                           </svg>
-                          <span>Copy Link</span>
+                          <span>{t('copyLink')}</span>
                         </>
                       )}
                     </motion.button>
@@ -319,7 +317,7 @@ export default function ThankYouModal({ isOpen, pledgeCount, onClose }) {
                     onClick={goToHomePage}
                     className='bg-[#C1351A] hover:bg-red-800 text-white font-bold px-6 md:px-8 py-2 md:py-3 rounded-md transition-all duration-300 hover:shadow-lg flex items-center text-sm md:text-base'
                   >
-                    <span>Continue Your Journey</span>
+                    <span>{t('continueYourJourney')}</span>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
                       className='h-4 w-4 md:h-5 md:w-5 ml-1 md:ml-2'

@@ -1,14 +1,17 @@
 import { principles } from '@/data/principles'
+import { useTranslation } from 'react-i18next'
 import Image from 'next/image'
 
 export default function AboutSection({ principlesRef, principlesInView }) {
+  const { t } = useTranslation()
+
   return (
     <div
       id='about-section'
       className='mt-[4rem] sm:mt-[6.625rem] scroll-mt-[20rem] sm:scroll-mt-[8.625rem] text-center bg-[#F5EFE0] py-10 sm:py-14 md:py-20 px-4 sm:px-6 md:px-0'
     >
       <h2 className='text-xl sm:text-2xl md:text-5xl font-bold text-[#C1351A] mb-6 sm:mb-8'>
-        THE RULE OF LAW PLEDGE
+        {t('ruleOfLawPledge')}
       </h2>
 
       <div
@@ -39,10 +42,14 @@ export default function AboutSection({ principlesRef, principlesInView }) {
 
               <div className='text-center sm:text-left'>
                 <h3 className='font-bold text-[#2B2B39] text-base sm:text-lg md:text-xl mb-1'>
-                  {principle.title}
+                  {idx === 0 && t('protectionJudicial')}
+                  {idx === 1 && t('legalWorkSupporting')}
+                  {idx === 2 && t('attackOnOne')}
                 </h3>
                 <p className='text-sm sm:text-base md:text-lg font-normal text-[#5F5F75]'>
-                  {principle.description}
+                  {idx === 0 && t('protectionJudicialDesc')}
+                  {idx === 1 && t('legalWorkSupportingDesc')}
+                  {idx === 2 && t('attackOnOneDesc')}
                 </p>
               </div>
             </div>

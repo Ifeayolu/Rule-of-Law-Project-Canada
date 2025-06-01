@@ -1,12 +1,15 @@
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from '../LanguageSwitcher'
 
 export default function Navbar() {
   const router = useRouter()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const { t } = useTranslation()
 
   const isHomePage = router.pathname === '/'
   const isAboutPage = router.pathname === '/about'
@@ -37,35 +40,14 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <button
-        onClick={toggleMenu}
-        className='md:hidden flex flex-col justify-center items-center'
-      >
-        <span
-          className={`bg-[#2B2B39] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
-            isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'
-          }`}
-        ></span>
-        <span
-          className={`bg-[#2B2B39] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
-            isMenuOpen ? 'opacity-0' : 'opacity-100'
-          }`}
-        ></span>
-        <span
-          className={`bg-[#2B2B39] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
-            isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'
-          }`}
-        ></span>
-      </button>
-
-      <div className='hidden md:flex space-x-6'>
+      <div className='hidden md:flex items-center space-x-6'>
         <Link
           href='/'
           className={`text-sm font-bold transition-colors duration-300 hover:text-[#C1351A] ${
             isHomePage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
           }`}
         >
-          Home
+          {t('home')}
         </Link>
         <Link
           href='/about'
@@ -73,7 +55,7 @@ export default function Navbar() {
             isAboutPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
           }`}
         >
-          About
+          {t('about')}
         </Link>
         <Link
           href='/pledge'
@@ -81,7 +63,7 @@ export default function Navbar() {
             isPledgePage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
           }`}
         >
-          Pledge
+          {t('pledge')}
         </Link>
         <Link
           href='/provincial-bylaws'
@@ -89,8 +71,35 @@ export default function Navbar() {
             isProvincialPage ? 'text-[#C1351A]' : 'text-[#2B2B39]'
           }`}
         >
-          By-Laws and Oaths of Law Societies
+          {t('bylaws')}
         </Link>
+
+        <LanguageSwitcher />
+      </div>
+
+      <div className='md:hidden flex items-center space-x-3'>
+        <LanguageSwitcher />
+
+        <button
+          onClick={toggleMenu}
+          className='flex flex-col justify-center items-center'
+        >
+          <span
+            className={`bg-[#2B2B39] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
+              isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'
+            }`}
+          ></span>
+          <span
+            className={`bg-[#2B2B39] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
+              isMenuOpen ? 'opacity-0' : 'opacity-100'
+            }`}
+          ></span>
+          <span
+            className={`bg-[#2B2B39] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
+              isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'
+            }`}
+          ></span>
+        </button>
       </div>
 
       <motion.div
@@ -106,7 +115,7 @@ export default function Navbar() {
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
-            Home
+            {t('home')}
           </Link>
           <Link
             href='/about'
@@ -115,7 +124,7 @@ export default function Navbar() {
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
-            About
+            {t('about')}
           </Link>
           <Link
             href='/pledge'
@@ -124,7 +133,7 @@ export default function Navbar() {
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
-            Pledge
+            {t('pledge')}
           </Link>
           <Link
             href='/provincial-bylaws'
@@ -133,7 +142,7 @@ export default function Navbar() {
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
-            By-Laws and Oaths of Law Societies
+            {t('bylaws')}
           </Link>
         </div>
       </motion.div>

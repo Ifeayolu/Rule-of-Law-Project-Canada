@@ -1,6 +1,7 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { provinces } from '@/data/provinces'
-import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function PledgeForm({
   formData,
@@ -10,37 +11,38 @@ export default function PledgeForm({
   handleChange,
   handleSubmit: parentHandleSubmit,
 }) {
-  const [validationErrors, setValidationErrors] = useState({})
+  const { t } = useTranslation()
+  const [validationErrors, setValidationErrors] = React.useState({})
 
   const validateEmail = (email) => {
-    if (!email) return 'Email is required'
+    if (!email) return t('emailRequired')
 
     const basicEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
     if (!basicEmailRegex.test(email)) {
       if (email.includes('@.')) {
-        return 'Invalid email format: domain cannot start with a period'
+        return t('emailInvalidDomainPeriod')
       }
       if (email.includes('..')) {
-        return 'Invalid email format: domain cannot contain consecutive periods'
+        return t('emailInvalidConsecutivePeriods')
       }
       if (!email.includes('@')) {
-        return 'Invalid email format: @ symbol is required'
+        return t('emailInvalidNoAt')
       }
       if (!email.includes('.')) {
-        return 'Invalid email format: domain extension is required (e.g., .com, .org)'
+        return t('emailInvalidNoDomain')
       }
 
       const domainPart = email.split('@')[1]
       if (domainPart && /[!#$%^&*()+=\[\]{}|\\<>\/]+/.test(domainPart)) {
-        return 'Invalid email format: domain contains invalid characters'
+        return t('emailInvalidDomainCharacters')
       }
 
-      return 'Please enter a valid email (e.g., name@example.com)'
+      return t('emailInvalidFormat')
     }
 
     const domainParts = email.split('@')[1].split('.')
     if (domainParts[0] === '') {
-      return 'Invalid email format: domain cannot start with a period'
+      return t('emailInvalidDomainPeriod')
     }
 
     return ''
@@ -97,7 +99,7 @@ export default function PledgeForm({
           animate={{ opacity: 1, y: 0 }}
           className='bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4'
         >
-          Thank you for your pledge!
+          {t('thankYouPledge')}
         </motion.div>
       )}
 
@@ -116,7 +118,7 @@ export default function PledgeForm({
           htmlFor='name'
           className='block text-sm md:text-base font-bold text-black mb-1'
         >
-          Your name *
+          {t('yourName')} *
         </label>
         <input
           type='text'
@@ -134,7 +136,7 @@ export default function PledgeForm({
           htmlFor='companyName'
           className='block text-sm md:text-base font-bold text-black mb-1'
         >
-          Designation/Organization
+          {t('designationOrganization')}
         </label>
         <input
           type='text'
@@ -151,7 +153,7 @@ export default function PledgeForm({
           htmlFor='email'
           className='block text-sm md:text-base font-bold text-black mb-1'
         >
-          Your email *
+          {t('yourEmail')} *
         </label>
         <input
           type='email'
@@ -176,7 +178,7 @@ export default function PledgeForm({
           htmlFor='province'
           className='block text-sm md:text-base font-bold text-black mb-1'
         >
-          Province *
+          {t('province')} *
         </label>
         <select
           id='province'
@@ -215,7 +217,7 @@ export default function PledgeForm({
           htmlFor='receiveUpdates'
           className='ml-2 text-sm font-medium text-gray-700 '
         >
-          Yes, I want to receive updates on the Rule of Law Project, Canada.
+          {t('receiveUpdatesText')}
         </label>
       </div>
 
@@ -241,10 +243,10 @@ export default function PledgeForm({
                 d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
               ></path>
             </svg>
-            Submitting...
+            {t('submitting')}
           </div>
         ) : (
-          'I take this Pledge'
+          t('takePledgeButton')
         )}
       </button>
     </motion.form>

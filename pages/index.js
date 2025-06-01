@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useInView } from 'react-intersection-observer'
+import { useTranslation } from 'react-i18next'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/home/HeroSection'
@@ -13,6 +14,7 @@ import PrincipleSection from '@/components/home/PrincipleSection'
 const totalPledgeGoal = 1000
 
 export default function Home() {
+  const { t } = useTranslation()
   const router = useRouter()
   const [pledgeCount, setPledgeCount] = React.useState(0)
   const [commentsCount, setCommentsCount] = React.useState(0)
@@ -69,11 +71,8 @@ export default function Home() {
   return (
     <div className='min-h-screen bg-gradient-to-b from-[#fffcf7] to-[#fffcf7]'>
       <Head>
-        <title>Rule of Law Canada | Pledge Your Support</title>
-        <meta
-          name='description'
-          content='Pledge your support for the Rule of Law in Canada'
-        />
+        <title>Rule of Law Canada | {t('takePledge')}</title>
+        <meta name='description' content={t('takePledge')} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
@@ -93,7 +92,7 @@ export default function Home() {
           onClick={() => router.push('/pledge')}
           className='bg-[#C1351A] hover:bg-red-800 text-white font-bold px-6 md:px-8 py-2 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform text-sm md:text-base'
         >
-          Take the Pledge
+          {t('takePledge')}
         </button>
       </div>
 

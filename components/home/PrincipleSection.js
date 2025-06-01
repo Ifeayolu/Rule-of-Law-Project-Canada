@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 export default function PrincipleSection({ principlesRef, principlesInView }) {
+  const { t } = useTranslation()
+
   return (
     <div
       ref={principlesRef}
@@ -15,24 +18,11 @@ export default function PrincipleSection({ principlesRef, principlesInView }) {
           viewport={{ once: true }}
           className=' mx-auto text-left text-[#2B2B39] text-xl'
         >
-          <p className='mb-6'>
-            The Rule of Law is the bedrock on which Canada’s constitutional
-            democracy stands. It holds all people accountable to the law, and
-            protects the rights and freedoms that all Canadians are entitled to
-            enjoy in this free and democratic society.
-          </p>
+          <p className='mb-6'>{t('ruleOfLawBedrock')}</p>
 
-          <p className='mb-6'>
-            An attack on the Rule of Law is an attack on our democracy.{' '}
-          </p>
+          <p className='mb-6'>{t('attackOnDemocracy')}</p>
 
-          <p className='mb-6'>
-            We are Canadian lawyers. Consistent with our oath, we are guardians,
-            protectors and a voice for the Rule of Law in Canada. Today, we
-            stand together in solidarity to re-affirm our duty to vigorously and
-            unwaveringly defend the Rule of Law in Canada, and commit to the
-            following principles:
-          </p>
+          <p className='mb-6'>{t('weAreCanadianLawyers')}</p>
         </motion.div>
       </div>
 

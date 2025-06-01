@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 export default function HeroSection({ heroRef, heroInView }) {
+  const { t } = useTranslation()
   const router = useRouter()
 
   return (
@@ -11,10 +13,10 @@ export default function HeroSection({ heroRef, heroInView }) {
       }`}
     >
       <h2 className='text-2xl md:text-4xl text-[#75625F] mb-8 font-bold px-4'>
-        Calling All Canadian Lawyers!
+        {t('callingAllLawyers')}
       </h2>
       <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold text-[#2B2B39] max-w-4xl mx-auto '>
-        Reaffirm Your Commitment to the Rule of Law in Canada
+        {t('reaffirmCommitment')}
       </h1>
     </div>
   )

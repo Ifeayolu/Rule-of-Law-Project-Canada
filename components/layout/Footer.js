@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 export default function Footer() {
+  const { t } = useTranslation()
   const router = useRouter()
 
   const pathname = usePathname()
@@ -30,7 +32,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 className='text-[#2B2B39] font-bold text-4xl text-center mb-15'
               >
-                What is the Rule of Law and why does it matter?{' '}
+                {t('whatIsRuleOfLaw')}
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
@@ -39,18 +41,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 className='mb-8 leading-relaxed text-[#2B2B39]'
               >
-                Simply stated, it is a guiding principle used and followed in
-                democratic societies to ensure that: (1) the people get to elect
-                their government, and get to do so in fair and open elections,
-                (2) although the elected government is responsible for making
-                laws, the law applies to everyone equally, including to the
-                government, (3) laws are made known to everyone so that they can
-                be followed, (4) government and citizens are held accountable to
-                the rule of law through cases brought to court, and decided by
-                an independent judiciary. Judges must be independent to ensure
-                they interpret the law according to legal principles, and not
-                according to personal bias, political affiliation or under undue
-                pressure or coercion.
+                {t('ruleOfLawExplanation1')}
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
@@ -59,19 +50,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 className='mb-8 leading-relaxed text-[#2B2B39]'
               >
-                In short, the rule of law guards against arbitrary exercise of
-                government power, and ensures equal access to and protection
-                under the law (protections like the right to due process/a fair
-                hearing). So, while governments can pass laws, they still have
-                to conform to basic legal principles that have been developed to
-                ensure fairness. In addition to those principles, in Canada we
-                also have a Constitution (which includes the Canadian Charter of
-                Rights and Freedoms). The Constitution is the supreme law with
-                which all laws must conform. The Charter guarantees certain
-                rights and freedoms to all Canadians, such as the freedom of
-                religion and speech, or the right to life, liberty and security
-                of the person. If a law is found to be unconstitutional, then it
-                might be struck down as unenforceable.
+                {t('ruleOfLawExplanation2')}
               </motion.p>
 
               <div className='mt-30 text-center'>
@@ -83,7 +62,7 @@ export default function Footer() {
                   onClick={() => router.push('/pledge')}
                   className='bg-[#C1351A] hover:bg-red-800 text-white font-bold px-6 md:px-8 py-2 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg transform text-sm md:text-base'
                 >
-                  Take the Pledge
+                  {t('takePledge')}
                 </motion.button>
               </div>
             </div>
@@ -116,11 +95,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 className='leading-relaxed text-white text-center font-normal text-base md:text-lg'
               >
-                The Rule of Law Project was started by a group of concerned
-                lawyers, who want to educate the public about <br /> the
-                important role the rule of law plays in our democracy, and to
-                encourage lawyers and others to stand up for the rule of <br />{' '}
-                law so that it does not get eroded over time.
+                {t('ruleOfLawProjectStarted')}
               </motion.p>
             </div>
           </div>
@@ -140,12 +115,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 className='text-center mb-8 leading-relaxed'
               >
-                The Rule of Law Project Canada is dedicated to creating a
-                community of lawyers that will work together to support <br />
-                the rule of law. We welcome lawyers from all areas of practice.
-                We will strive to educate all Canadians on the importance of{' '}
-                <br />
-                the rule of law.
+                {t('ruleOfLawProjectDescription')}
               </motion.p>
             </div>
           </footer>
@@ -161,7 +131,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className='font-bold text-base text-[#FFFCF7]'
             >
-              Rule of Law Project Canada{' '}
+              {t('ruleOfLawProjectCanada')}
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -170,11 +140,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className='mt-4 md:mt-8 text-white max-w-md font-normal text-base md:text-lg'
             >
-              The Rule of Law project Canada is the bedrock on which Canada’s
-              constitutional democracy stands. It holds all people accountable
-              to the law, and protects the rights and freedoms that all
-              Canadians are entitled to enjoy in this free and democratic
-              society.
+              {t('footerDescription')}
             </motion.p>
 
             <motion.p
@@ -184,7 +150,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className='mt-2 md:mt-24 text-sm text-[#FFFCF7] font-normal'
             >
-              © 2025 Rule of Law Project Canada{' '}
+              {t('copyright')}
             </motion.p>
           </div>
 
@@ -196,7 +162,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className='font-bold text-base text-[#FFFCF7] mb-4 md:mb-8'
             >
-              External Links
+              {t('externalLinks')}
             </motion.h3>
             <ul className='space-y-2 text-sm md:text-base text-[#FFFCF7] font-normal'>
               <motion.li
@@ -211,7 +177,7 @@ export default function Footer() {
                   rel='noopener noreferrer'
                   className='hover:text-white transition-colors duration-300'
                 >
-                  Canadian Bar Association Statement
+                  {t('canadianBarStatement')}
                 </Link>
               </motion.li>
               <motion.li
@@ -226,7 +192,7 @@ export default function Footer() {
                   rel='noopener noreferrer'
                   className='hover:text-white transition-colors duration-300'
                 >
-                  Federation of Law Societies of Canada Statement
+                  {t('federationStatement')}
                 </Link>
               </motion.li>
               <motion.li
@@ -241,7 +207,7 @@ export default function Footer() {
                   rel='noopener noreferrer'
                   className='hover:text-white transition-colors duration-300'
                 >
-                  Statement of the Chief Justices of Ontario
+                  {t('chiefJusticesStatement')}
                 </Link>
               </motion.li>
               <motion.li
@@ -256,7 +222,7 @@ export default function Footer() {
                   rel='noopener noreferrer'
                   className='hover:text-white transition-colors duration-300'
                 >
-                  International Law Association Canada Statement
+                  {t('intlLawStatement')}
                 </Link>
               </motion.li>
             </ul>
@@ -269,7 +235,7 @@ export default function Footer() {
               className='mt-8'
             >
               <p className='text-sm md:text-base text-[#FFFCF7] font-normal'>
-                You can reach us and share your comments at
+                {t('contactInfo')}
               </p>
               <Link
                 href='mailto:info@ruleoflawproject.ca'

@@ -77,7 +77,10 @@ export default function About() {
 
               <p>{t('ontarioOath')}</p>
 
-              <p className=' text-[#5F5F75]'>{t('ontarioOathText')}</p>
+              <p
+                className=' text-[#5F5F75]'
+                dangerouslySetInnerHTML={{ __html: t('ontarioOathText') }}
+              ></p>
 
               <p>{t('oathConclusion')}</p>
 

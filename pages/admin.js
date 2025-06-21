@@ -87,23 +87,103 @@ export default function AdminDashboard() {
     }
   }
 
+  const getPledgeDataForExport = async () => {
+    let pledgesToExport = allPledges
+
+    if (pledgesToExport.length === 0) {
+      const pledgesResponse = await fetch('/api/pledge')
+      const pledgesData = await pledgesResponse.json()
+
+      if (!pledgesResponse.ok) {
+        throw new Error('Failed to fetch pledge data')
+      }
+
+      pledgesToExport = pledgesData.pledges || []
+    }
+
+    return pledgesToExport
+  }
+
+  const handleExportCSV = async () => {
+    setExportError('')
+    setExportLoading(true)
+
+    try {
+      const pledgesToExport = await getPledgeDataForExport()
+
+      const sortedPledges = [...pledgesToExport].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      )
+
+      const headers = [
+        'Name',
+        'Email',
+        'Company',
+        'Province',
+        'Receive Updates',
+        'Date',
+      ]
+
+      const csvData = sortedPledges.map((pledge) => [
+        pledge.name || '',
+        pledge.email || '',
+        pledge.companyName || '',
+        provinceMap[pledge.province] || pledge.province || '',
+        pledge.receiveUpdates ? 'Yes' : 'No',
+        new Date(pledge.createdAt).toLocaleDateString('en-CA', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
+      ])
+
+      const csvContent = [
+        headers.join(','),
+        ...csvData.map((row) =>
+          row
+            .map((field) => {
+              const stringField = String(field)
+              if (
+                stringField.includes(',') ||
+                stringField.includes('"') ||
+                stringField.includes('\n')
+              ) {
+                return `"${stringField.replace(/"/g, '""')}"`
+              }
+              return stringField
+            })
+            .join(',')
+        ),
+      ].join('\n')
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+      const link = document.createElement('a')
+      const url = URL.createObjectURL(blob)
+      link.setAttribute('href', url)
+      link.setAttribute('download', 'all-pledges-export.csv')
+      link.style.visibility = 'hidden'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error('CSV Export error:', error)
+      setExportError(`Error generating CSV: ${error.message}`)
+    } finally {
+      setExportLoading(false)
+    }
+  }
+
   const handleExportPDF = async () => {
     setExportError('')
     setExportLoading(true)
 
     try {
-      let pledgesToExport = allPledges
+      const pledgesToExport = await getPledgeDataForExport()
 
-      if (pledgesToExport.length === 0) {
-        const pledgesResponse = await fetch('/api/pledge')
-        const pledgesData = await pledgesResponse.json()
-
-        if (!pledgesResponse.ok) {
-          throw new Error('Failed to fetch pledge data')
-        }
-
-        pledgesToExport = pledgesData.pledges || []
-      }
+      const sortedPledges = [...pledgesToExport].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      )
 
       const doc = new jsPDF({
         orientation: 'landscape',
@@ -121,7 +201,7 @@ export default function AdminDashboard() {
       })
       doc.setFontSize(10)
       doc.text(`Generated: ${today}`, 14, 22)
-      doc.text(`Total Pledges: ${pledgesToExport.length}`, 14, 27)
+      doc.text(`Total Pledges: ${sortedPledges.length}`, 14, 27)
 
       const tableHeaders = [
         'Name',
@@ -132,7 +212,7 @@ export default function AdminDashboard() {
         'Date',
       ]
 
-      const tableData = pledgesToExport.map((pledge) => [
+      const tableData = sortedPledges.map((pledge) => [
         pledge.name || '',
         pledge.email || '',
         pledge.companyName || '',
@@ -322,6 +402,14 @@ export default function AdminDashboard() {
 
             <div className='flex flex-wrap gap-2'>
               <button
+                onClick={handleExportCSV}
+                disabled={exportLoading}
+                className='bg-green-600 text-white font-bold px-4 py-2 rounded transition-all duration-300 hover:bg-green-700'
+              >
+                {exportLoading ? 'Exporting...' : 'Download CSV'}
+              </button>
+
+              <button
                 onClick={handleExportPDF}
                 disabled={exportLoading}
                 className='bg-[#C1351A] text-white font-bold px-4 py-2 rounded transition-all duration-300 hover:bg-red-800'
@@ -370,7 +458,7 @@ export default function AdminDashboard() {
 
             {!loading && allPledges.length === 0 && (
               <p className='text-gray-500 text-center py-4'>
-                No pledges loaded. Download PDF to export all pledges.
+                No pledges loaded. Download CSV or PDF to export all pledges.
               </p>
             )}
 
@@ -417,7 +505,8 @@ export default function AdminDashboard() {
 
               {allPledges.length > 20 && (
                 <div className='text-center text-gray-500 py-4'>
-                  Showing first 20 pledges. Download PDF to see all pledges.
+                  Showing first 20 pledges. Download CSV or PDF to see all
+                  pledges.
                 </div>
               )}
             </div>

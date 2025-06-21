@@ -153,7 +153,10 @@ export default function PledgeForm({
           htmlFor='email'
           className='block text-sm md:text-base font-bold text-black mb-1'
         >
-          {t('yourEmailLabel')} * <span>{t('yourEmailNote')}</span>
+          {t('yourEmailLabel')} *{' '}
+          <span className='text-sm font-medium text-gray-700'>
+            {t('yourEmailNote')}
+          </span>
         </label>
         <input
           type='email'

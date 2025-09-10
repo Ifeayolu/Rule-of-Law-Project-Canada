@@ -27,12 +27,15 @@ const UserAvatar = ({ size = 'md', className = '' }) => {
 
 export default UserAvatar
 
-export const formatPledgeCount = (count) => {
-  if (count >= 1000000) {
-    return (count / 1000000).toFixed(1) + 'M Pledges'
-  } else if (count >= 1000) {
-    return (count / 1000).toFixed(1) + 'k Pledges'
-  } else {
-    return count + ' Pledges'
+export function formatPledgeCount(count) {
+  if (count < 10_000) {
+    return count.toLocaleString()
   }
+  if (count < 1_000_000) {
+    return (count / 1_000).toFixed(1).replace(/\.0$/, '') + 'k'
+  }
+  if (count < 1_000_000_000) {
+    return (count / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M'
+  }
+  return (count / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B'
 }

@@ -68,7 +68,7 @@ export default function PledgeModal({
           <div
             className='h-full bg-[#C1351A] rounded-full transition-all duration-1000 ease-out'
             style={{
-              width: `${pledgePercentage}%`,
+              width: `${Math.min(pledgePercentage, 100)}%`,
               minWidth: pledgePercentage > 0 ? '2px' : '0',
             }}
           ></div>

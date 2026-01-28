@@ -225,6 +225,21 @@ export default function Footer() {
                   {t('intlLawStatement')}
                 </Link>
               </motion.li>
+              <motion.li
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Link
+                  href='https://albertacourts.ca/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hover:text-white transition-colors duration-300'
+                >
+                  {t('statementByChiefJustices')}
+                </Link>
+              </motion.li>
             </ul>
 
             <motion.div
